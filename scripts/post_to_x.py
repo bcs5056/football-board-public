@@ -13,9 +13,6 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-import requests
-from requests_oauthlib import OAuth1
-
 ROOT = Path(__file__).resolve().parent.parent
 TEXT = ROOT / "post" / "post.txt"
 CARD = ROOT / "post" / "card.png"
@@ -43,6 +40,9 @@ text = TEXT.read_text(encoding="utf-8").strip()
 if not text:
     print("::notice::post.txt is empty — nothing to post.")
     sys.exit(0)
+
+import requests  # noqa: E402
+from requests_oauthlib import OAuth1  # noqa: E402
 
 auth = OAuth1(*keys)
 media_ids = []
